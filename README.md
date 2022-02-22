@@ -1,2 +1,2 @@
-# DevOps Project 6
-Web Solution with Wordpress
+# DevOps Project6
+## Web Solution with Wordpress

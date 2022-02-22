@@ -175,3 +175,73 @@ the difference is that the  db has db-lv logical volume and it's mounted to /db 
 
 ### installing wordpress on web server
 
+installing wget, apache and its dependencies
+
+` $ sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`
+
+starting apache 
+
+` $ sudo systemctl enable httpd`
+
+` $ sudo systemctl start httpd`
+
+including some php dependencies 
+
+` $ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
+
+` $ sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm`
+
+` $ sudo yum module list php`
+
+` $ sudo yum module reset php`
+
+` $ sudo yum module enable php:remi-8.1`
+
+` $ sudo yum install php php-opcache php-gd php-curl php-mysqlnd`
+
+` $ sudo systemctl start php-fpm`
+
+` $ sudo systemctl enable php-fpm`
+
+` $ setsebool -P httpd_execmem 1`
+
+restarting apache 
+
+` $ sudo systemctl restart httpd`
+
+downloading wordpress and copying wordpress to /html
+
+` $ mkdir wordpress && cd wordpress`
+
+` $ sudo wget http://wordpress.org/latest.tar.gz`
+
+` $ sudo tar xzvf latest.tar.gz`
+
+` $ sudo rm -rf latest.tar.gz`
+
+` $ cp wordpress/wp-config-sample.php wp-config.php`
+
+` $ cp -R /var/www/html/`
+
+configuring selinux policies
+
+` $ sudo chown -R apache:apache /var/www/html/`
+
+` $ sudo chcon -t httpd_sys_rw_content_t /var/www/html -R`
+
+` $ sudo setsebool -P httpd_can_network_connect=1`
+
+![](images/wpinst1.png)
+
+![](images/wphpstatus2.png)
+
+![](images/wphttpd3.png)
+
+![](images/wpmkdir2xtract4.png)
+
+![](images/wpcontent5.png)
+
+![](images/wpcpcre6.png)
+
+![](images/wphome2varhtml7.png)
+

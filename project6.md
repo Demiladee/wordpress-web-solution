@@ -52,3 +52,40 @@ installing lvm2 package and checking for available partitions
 
 ![](images/lvmdiskscan10.png)
 
+creating physical volumes for each disk
+
+` $ sudo pvcreate /dev/xvdf1`
+
+` $ sudo pvcreate /dev/xvdg1`
+
+` $ sudo pvcreate /dev/xvdh1`
+
+verifying that physical volumes were created 
+
+` $ sudo pvs`
+
+creating volume group and adding all 3 physical volumes to the volume group
+
+` $ sudo vgcreate webdata-vg /dev/xvdf1 /dev/xvdg1 /dev/xvdh1`
+
+confirming that volume group was created and physical volumes was added
+
+` $ sudo vgs`
+
+creating 2 logical volumes to store website data and logs
+
+` $ sudo lvcreate -n apps-lv -L 14G webdata-vg`
+
+` $ sudo lvcreate -n logs-lv -L 14G webdata-vg`
+
+verifying that logical volumes were created
+
+` $ sudo lvs`
+
+![](images/pvvglv11.png)
+
+verifying the entire setup
+
+` $ sudo vgdisplay -v`
+
+![](images/vgdisplay12.png)

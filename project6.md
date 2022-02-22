@@ -133,3 +133,41 @@ the /etc/fstab file will be updated with the uuid of the different devices
 
 ![](images/fstab16.png)
 
+testing the configuration and reloading the daemon
+
+` $ sudo mount -a`
+
+` $ sudo systemctl daemon-reload`
+
+verifying the setup 
+
+` $ df -h`
+
+![](images/mountdaemon17.png)
+
+### repeating all steps above for the database server
+
+the difference is that the  db has db-lv logical volume and it's mounted to /db directory
+
+![](images/dbvol.png)
+
+![](images/db1.png)
+
+![](images/dbxvdf2.png)
+
+![](images/dbxvdg3.png)
+
+![](images/dbxvdh4.png)
+
+![](images/dblsblk5.png)
+
+![](images/dblvminst6.png)
+
+![](images/dblvmdlvcreate7.png)
+
+![](images/dbverify8.png)
+
+![](images/dbmkfs2fstab9.png)
+
+![](images/dbfstabveri10.png)
+

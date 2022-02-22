@@ -89,3 +89,47 @@ verifying the entire setup
 ` $ sudo vgdisplay -v`
 
 ![](images/vgdisplay12.png)
+
+formatting the logical volumes with ext4 filesystem
+
+` $ sudo mkfs -t ext4 /dev/webdata-vg/apps-lv`
+
+` $ sudo mkfs -t ext4 /dev/webdata-vg/logs-lv`
+
+![](images/mkfs13.png)
+
+creating /html directory to store website files
+
+` $ sudo mkdir -p /var/www/html`
+
+creating /logs directory to store backup of log data
+
+` $ sudo mkdir -p /home/recovery/logs`
+
+mounting /html directory on apps-lv logical volume
+
+` $ sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
+
+using rsync to backup all files in the /var/log directory before mounting into /home/recovery/logs
+
+` $ sudo rsync -av /var/log/. /home/recovery/logs/`
+
+` $ sudo mount /dev/webdata-vg/logs-lv /var/log`
+
+restoring log files back into /var/log directory
+
+` $ sudo rsync -av /home/recovery/logs/. /var/log`
+
+![](images/dirbkup14.png)
+![](images/dirbkup14again.png)
+
+the /etc/fstab file will be updated with the uuid of the different devices
+
+` $ sudo blkid`
+
+` $ sudo vi /etc/fstab`
+
+![](images/blkidetc15.png)
+
+![](images/fstab16.png)
+

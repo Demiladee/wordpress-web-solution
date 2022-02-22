@@ -245,3 +245,77 @@ configuring selinux policies
 
 ![](images/wphome2varhtml7.png)
 
+### installing mysql on db server
+
+` $ sudo yum install mysql-server`
+
+verifying sql status
+
+` $ sudo systemctl status mysqld`
+
+restarting and enabling sql
+
+` $ sudo systemctl restart mysqld`
+
+` $ sudo systemctl enable mysqld`
+
+securing sql installation
+
+` $ sudo mysql_secure_installation`
+
+![](images/wpinstallmysqlserver8.png)
+
+![](images/wpenablmysql9.png)
+
+![](images/wpscreinst10.png)
+
+configuring mysql db to work with wordpress
+
+` $ sudo mysql`
+
+#### CREATE DATABASE wordpress;
+#### CREATE USER 'myuser2'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+#### GRANT ALL PRIVILEGES ON *.* TO 'myuser2'@'%' WITH GRANT OPTION;
+#### FLUSH PRIVILEGES;
+#### SHOW DATABASES;
+#### exit
+
+![](images/wpdbsetup11.png)
+
+configuring wordpress to connect to remote database
+
+editing database server's inbound rule to allow access from only the web server's ip address 
+
+![](images/wpinbound13.png)
+
+testing that the inbound rule security worked
+
+` $ mysql -u myuser2 -h private-ip -p`
+
+![](images/wpterminaltest14.png)
+
+changing permissions and configuration so apache can access wordpress
+
+editing bind address from db server to allow access from everywhere
+
+` $ sudo vi /etc/my.cnf`
+
+![](images/wpbindaddr12.png)
+
+editing db server's inbound rule to allow access from everywhere
+
+![](images/wpinbound15.png)
+
+accessing wordpress from browser
+
+` http:// web server's public ip address`
+
+![](images/final1.png)
+
+![](images/final2.png)
+
+![](images/final3.png)
+
+![](images/final4.png)
+
+![](images/final5.png)

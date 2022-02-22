@@ -149,6 +149,8 @@ verifying the setup
 
 the difference is that the  db has db-lv logical volume and it's mounted to /db directory
 
+![](images/update.png)
+
 ![](images/dbvol.png)
 
 ![](images/db1.png)
@@ -170,4 +172,6 @@ the difference is that the  db has db-lv logical volume and it's mounted to /db 
 ![](images/dbmkfs2fstab9.png)
 
 ![](images/dbfstabveri10.png)
+
+### installing wordpress on web server
 
